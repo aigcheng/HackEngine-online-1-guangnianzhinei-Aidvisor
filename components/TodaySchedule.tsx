@@ -137,8 +137,8 @@ function TodaySchedule() {
               <div key={index} className="contact flex  items-center cursor-pointer pr-5" onClick={() => handleContactSelect(contact)}>
                 <Avatar src={contact.avatar} className="w-[50px] h-[50px] mr-3 mb-3" />
                 <div className="flex flex-col">
-                  <div className="name text-black mr-3">{contact.date} </div>
-                  <div className="name text-black mr-3"> {contact.soundImpression}</div>
+                  <div className="name text-black mr-3">时间：{contact.date} </div>
+                  <div className="name text-black mr-3">记录印象：{contact.soundImpression}</div>
                 </div>
               </div>
             )
