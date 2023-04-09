@@ -28,8 +28,8 @@ export default function Header(props: any) {
         <div className="flex gap-6 md:gap-10">
           <Link href="/">
             <h2 className="font-inter font-bold text-2xl leading-7 text-black flex items-center">
-              CHANPIN
-              <span className="text-blue-500">MING</span>
+              Aidvisor
+              {/* <span className="text-blue-500">MING</span> */}
             </h2>
           </Link>
         </div>
