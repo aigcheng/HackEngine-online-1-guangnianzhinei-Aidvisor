@@ -19,7 +19,7 @@ interface Contact {
 const contacts: Contact[] = [
   {
     id: 1,
-    name: '张三',
+    name: '王丽',
     phone: '13812345678',
     company: 'ABC公司',
     date: '2023年3月3日',
@@ -27,11 +27,11 @@ const contacts: Contact[] = [
     position: '工程师',
     birthday: '1990年1月1日',
     soundImpression: '说话很温柔',
-    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
+    avatar: 'p2.jpg'
   },
   {
     id: 2,
-    name: '李四',
+    name: 'jack',
     phone: '13987654321',
     company: 'XYZ公司',
     date: '2023年3月5日',
@@ -39,11 +39,11 @@ const contacts: Contact[] = [
     position: '经理',
     birthday: '1985年5月5日',
     soundImpression: '声音很有磁性',
-    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/20/27/avatar-1295773_960_720.png'
+    avatar: 'p3.jpg'
   },
   {
     id: 3,
-    name: '王五',
+    name: 'dan',
     phone: '13987654321',
     company: 'XYZ公司',
     date: '2023年3月6日',
@@ -51,7 +51,7 @@ const contacts: Contact[] = [
     position: '经理',
     birthday: '1998年5月5日',
     soundImpression: '声音很有特点',
-    avatar: 'https://cdn.pixabay.com/photo/2016/04/01/11/25/avatar-1300331_960_720.png'
+    avatar: 'p4.jpg'
   }
 ]
 
@@ -123,7 +123,7 @@ function TodaySchedule() {
       <div className={styles.contact}>
         <div className="flex mb-5">
           <Image width={82} height={82} src="/schedule.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
-          <h2 className="font-bold text-black text-xl leading-6 mt-auto">今日日程</h2>
+          <h2 className="font-bold text-black text-xl leading-6 mt-auto mb-3">今日日程</h2>
         </div>
         <div className="flex flex-col">
           {contacts.map((contact, index) => {
@@ -149,7 +149,7 @@ function TodaySchedule() {
       </div>
 
       {selectedContact && (
-        <Modal title="新增联系人" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk}>
+        <Modal title="编辑日程信息" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk}>
           <div className="bg-gray-100 text-black flex flex-col">
             <div className="flex flex-col items-center justify-around py-6">
               <Avatar src={selectedContact.avatar} size={96} />
@@ -215,13 +215,18 @@ function TodaySchedule() {
       )}
 
       {/* 新增联系人弹窗 */}
-      <Modal title="新增联系人" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk}>
+      <Modal title="新建日程" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk}>
         <Input placeholder="请输入姓名" className="my-4" />
         <Input placeholder="请输入电话号码" className="my-4" />
         <Input placeholder="请输入公司名称" className="my-4" />
         <Input placeholder="请输入行业" className="my-4" />
         <Input placeholder="请输入职位" className="my-4" />
         <Input placeholder="请输入生日" className="my-4" />
+        <div className="flex justify-center my-8">
+          <Button onClick={handleSaveClick} className=" w-60 h-10 bg-blue rounded-full">
+            保存
+          </Button>
+        </div>
       </Modal>
     </div>
   )

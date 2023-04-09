@@ -25,40 +25,40 @@ const contacts: Contact[] = [
     position: '供应商老板',
     birthday: '1990年1月1日',
     soundImpression: '很有魄力',
-    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
+    avatar: 'p1.jpg'
   },
   {
     id: 2,
-    name: '李四',
+    name: '王丽',
     phone: '13987654321',
     company: 'XYZ公司',
     industry: '金融',
     position: '经理',
     birthday: '1985年5月5日',
     soundImpression: '声音很有磁性',
-    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/20/27/avatar-1295773_960_720.png'
+    avatar: 'p2.jpg'
   },
   {
     id: 3,
-    name: '王五',
+    name: 'jack',
     phone: '13987654321',
     company: 'XYZ公司',
     industry: '互联网',
     position: '经理',
     birthday: '1998年5月5日',
     soundImpression: '声音很有特点',
-    avatar: 'https://cdn.pixabay.com/photo/2016/04/01/11/25/avatar-1300331_960_720.png'
+    avatar: 'p3.jpg'
   },
   {
     id: 4,
-    name: '张三',
+    name: 'dan',
     phone: '13812345678',
     company: 'ABC公司',
     industry: 'IT',
     position: '工程师',
     birthday: '1990年1月1日',
     soundImpression: '说话很温柔',
-    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
+    avatar: 'p4.jpg'
   }
 ]
 
@@ -130,7 +130,7 @@ function ContactsComponent() {
       <div className={styles.contact}>
         <div className="flex mb-5">
           <Image width={82} height={82} src="/contact.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
-          <h2 className="font-bold text-black text-xl leading-6 mt-auto">联系人</h2>
+          <h2 className="font-bold text-black text-xl leading-6 mt-auto mb-1">联系人</h2>
         </div>
         <div className="flex flex-wrap">
           {contacts.map((contact, index) => {
@@ -157,7 +157,7 @@ function ContactsComponent() {
       </div>
 
       {selectedContact && (
-        <Modal title="新增联系人" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk}>
+        <Modal title="编辑联系人信息" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk} footer={null}>
           <div className="bg-gray-100 text-black flex flex-col">
             <div className="flex flex-col items-center justify-around py-6">
               <Avatar src={selectedContact.avatar} size={96} />
@@ -223,13 +223,18 @@ function ContactsComponent() {
       )}
 
       {/* 新增联系人弹窗 */}
-      <Modal title="新增联系人" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk}>
+      <Modal title="新增联系人" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk} footer={null}>
         <Input placeholder="请输入姓名" className="my-4" />
         <Input placeholder="请输入电话号码" className="my-4" />
         <Input placeholder="请输入公司名称" className="my-4" />
         <Input placeholder="请输入行业" className="my-4" />
         <Input placeholder="请输入职位" className="my-4" />
         <Input placeholder="请输入生日" className="my-4" />
+        <div className="flex justify-center my-8">
+          <Button onClick={handleSaveClick} className=" w-60 h-10 bg-blue rounded-full">
+            保存
+          </Button>
+        </div>
       </Modal>
     </div>
   )
