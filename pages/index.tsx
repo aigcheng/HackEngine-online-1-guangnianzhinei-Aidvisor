@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Button } from 'antd'
@@ -18,8 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className="flex p-10">
-          <div className="left-content pr-6 flex flex-col items-start justify-between">
+        <div className="flex py-10 mx-20">
+          <div className="left-content pr-6 flex flex-col items-start justify-between h-[500px]">
             <div className="title">
               <h1 className="font-inter leading-normal font-normal text-6xl leading-9 text-black">
                 让你的 <br />
@@ -34,10 +35,11 @@ export default function Home() {
               </div>
             </div>
             <Button className=" w-60 h-12 bg-black rounded-full">
-              <span className="font-inter font-bold text-xl leading-11 text-white">立即体验</span>
+              <Link href="/schedule">
+                <span className="font-inter font-bold text-xl leading-11 text-white">立即体验</span>
+              </Link>
             </Button>
           </div>
-          <div className="bg-blue-300 w-[380px] h-[500px]"></div>
         </div>
         <Footer />
       </main>

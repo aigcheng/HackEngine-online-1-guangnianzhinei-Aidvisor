@@ -24,8 +24,8 @@ type Event = {
 function SchedulePage() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [newContact, setNewContact] = useState<string>('')
-  const [events, setEvents] = useState<Event[]>([]);
-  const [newEvent, setNewEvent] = useState<Event>({ title: '', start: new Date(), end: new Date() });
+  const [events, setEvents] = useState<Event[]>([])
+  const [newEvent, setNewEvent] = useState<Event>({ title: '', start: new Date(), end: new Date() })
 
   const handleAddContact = () => {
     if (newContact) {
@@ -35,14 +35,12 @@ function SchedulePage() {
   }
 
   interface Event {
-    title: string;
-    start: Date;
-    end: Date;
-    participants?: string[];
+    title: string
+    start: Date
+    end: Date
+    participants?: string[]
   }
-  
 
-  
   const handleAddEvent = (value: Moment[]) => {
     if (newEvent.title && value.length === 2) {
       setEvents([
@@ -54,17 +52,16 @@ function SchedulePage() {
           participants: newEvent.participants || []
         }
       ])
-      setNewEvent({ title: '', start: new Date(), end: new Date() });
+      setNewEvent({ title: '', start: new Date(), end: new Date() })
     }
   }
-  
 
   return (
     <Layout>
       <Header></Header>
       <Content style={{ padding: '50px' }}>
         <Row gutter={24}>
-          <Col span={8}>
+          <Col span={5} style={{ backgroundColor: 'rgba(1, 107, 255, 0.15);', marginRight: '20px' }}>
             <div style={{ height: '25%' }}>
               <h2>联系人列表</h2>
               <List
@@ -119,7 +116,7 @@ function SchedulePage() {
               </Select>
             </div>
           </Col>
-          <Col span={16}>
+          <Col span={16} style={{ color: '#000' }}>
             <Calendar
               localizer={localizer}
               events={events}

@@ -36,7 +36,7 @@ export default function Header(props: any) {
         {props.showNav && (
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-1 ">
-              <ul className=" gap-10 font-display text-[15px] font-medium text-secondary-700 md:flex header-menu w-[50vw]">
+              {/* <ul className=" gap-10 font-display text-[15px] font-medium text-secondary-700 md:flex header-menu w-[50vw]">
                 <li>
                   <Link
                     href="/contacts"
@@ -60,13 +60,13 @@ export default function Header(props: any) {
                     录音
                   </Link>
                 </li>
-              </ul>
-              <button
+              </ul> */}
+              {/* <button
                 onClick={handleOpenModal}
                 className="bg-blue-500 rounded-full md:min-w-[110px] border border-primary-500 bg-primary-500 px-3 py-1.5 md:px-4 md:py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200"
               >
                 开始使用
-              </button>
+              </button> */}
             </nav>
           </div>
         )}
