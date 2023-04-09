@@ -258,7 +258,6 @@ function TodaySchedule() {
       </Modal>
 
       <Modal
-        style={{ backgroundColor: '#016bff' }}
         title="录制中"
         open={showRecording}
         onCancel={() => setShowRecording(false)}
