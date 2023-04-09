@@ -51,7 +51,7 @@ const contacts: Contact[] = [
   }
 ]
 
-function ContactsComponent() {
+function TodaySchedule() {
   const [selectedContact, setSelectedContact] = useState<Contact | null>({})
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
@@ -115,22 +115,18 @@ function ContactsComponent() {
   }
 
   return (
-    <div>
+    <div className="min-h-500">
       <div className={styles.contact}>
         <div className="flex mb-5">
-          <Image width={82} height={82} src="/contact.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
-          <h2 className="font-bold text-black text-xl leading-6 mt-auto">联系人</h2>
+          <Image width={82} height={82} src="/schedule.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
+          <h2 className="font-bold text-black text-xl leading-6 mt-auto">今日日程</h2>
         </div>
-        <div className="flex">
+        <div className="flex flex-col">
           {contacts.map((contact, index) => {
             return (
-              <div
-                key={index}
-                className="contact flex flex-col items-center cursor-pointer pr-5"
-                onClick={() => handleContactSelect(contact)}
-              >
+              <div key={index} className="contact flex  items-center cursor-pointer pr-5" onClick={() => handleContactSelect(contact)}>
                 <Avatar src={contact.avatar} className="w-[50px] h-[50px]" />
-                <div className="name text-black mt-3">{contact.name} </div>
+                <div className="name text-black mr-3">{contact.name} </div>
               </div>
             )
           })}
@@ -224,4 +220,4 @@ function ContactsComponent() {
   )
 }
 
-export default ContactsComponent
+export default TodaySchedule
