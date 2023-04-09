@@ -3,7 +3,7 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Link from 'next/link'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
 import { Button } from 'antd'
 
 const inter = Inter({ subsets: ['latin'] })

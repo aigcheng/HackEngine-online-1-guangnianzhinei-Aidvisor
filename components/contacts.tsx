@@ -1,6 +1,6 @@
 import { Avatar, List, Layout, Input, Button, Modal } from 'antd'
 import Image from 'next/image'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
 import { useState } from 'react'
 
 interface Contact {
@@ -57,7 +57,7 @@ const contacts: Contact[] = [
     industry: 'IT',
     position: '工程师',
     birthday: '1990年1月1日',
-    soundImpression: '说话很温柔',
+    soundImpression: '很有亲和力',
     avatar: 'p4.jpg'
   }
 ]

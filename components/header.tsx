@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
 export default function Header(props: any) {
   const [showModal, setShowModal] = useState(false)
   const [phone, setPhone] = useState('')

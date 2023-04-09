@@ -6,7 +6,7 @@ import 'moment/locale/zh-cn' // 导入中文语言包
 import Header from '@/components/header'
 import ContactsComponent from '@/components/contacts'
 import TodaySchedule from '@/components/TodaySchedule'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const { Content } = Layout

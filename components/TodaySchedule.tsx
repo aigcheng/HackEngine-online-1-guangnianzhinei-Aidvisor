@@ -1,6 +1,6 @@
 import { Avatar, List, Layout, Input, Button, Modal } from 'antd'
 import Image from 'next/image'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.scss'
 import { useState } from 'react'
 
 interface Contact {
@@ -13,6 +13,7 @@ interface Contact {
   position: string
   birthday: string
   soundImpression: string
+  soundNums: number
   avatar: string
 }
 
@@ -27,6 +28,7 @@ const contacts: Contact[] = [
     position: '工程师',
     birthday: '1990年1月1日',
     soundImpression: '说话很温柔',
+    soundNums: 2,
     avatar: 'p2.jpg'
   },
   {
@@ -39,6 +41,7 @@ const contacts: Contact[] = [
     position: '经理',
     birthday: '1985年5月5日',
     soundImpression: '声音很有磁性',
+    soundNums: 1,
     avatar: 'p3.jpg'
   },
   {
@@ -50,7 +53,8 @@ const contacts: Contact[] = [
     industry: '互联网',
     position: '经理',
     birthday: '1998年5月5日',
-    soundImpression: '声音很有特点',
+    soundImpression: '很有亲和力',
+    soundNums: 3,
     avatar: 'p4.jpg'
   }
 ]
@@ -59,6 +63,7 @@ function TodaySchedule() {
   const [selectedContact, setSelectedContact] = useState<Contact | null>()
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
+  const [showRecording, setShowRecording] = useState(false)
   const [isNewContactModalVisible, setIsNewContactModalVisible] = useState(false)
 
   const handleContactSelect = (contact: Contact) => {
@@ -123,7 +128,7 @@ function TodaySchedule() {
       <div className={styles.contact}>
         <div className="flex mb-5">
           <Image width={82} height={82} src="/schedule.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
-          <h2 className="font-bold text-black text-xl leading-6 mt-auto mb-3">今日日程</h2>
+          <h2 className="font-bold text-black text-xl leading-6 mt-auto mb-3">今日行程</h2>
         </div>
         <div className="flex flex-col">
           {contacts.map((contact, index) => {
@@ -149,13 +154,13 @@ function TodaySchedule() {
       </div>
 
       {selectedContact && (
-        <Modal title="编辑日程信息" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk}>
+        <Modal title="编辑行程信息" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk} footer={null}>
           <div className="bg-gray-100 text-black flex flex-col">
             <div className="flex flex-col items-center justify-around py-6">
               <Avatar src={selectedContact.avatar} size={96} />
               <h2 className="text-2xl font-bold">{selectedContact.name}</h2>
             </div>
-            <div className="grid grid-cols-2 gap-8 px-12">
+            <div className="grid grid-cols-2 gap-8 px-6">
               <div className="flex">
                 <div className="font-bold mb-4">公司：</div>
                 <div>
@@ -204,6 +209,28 @@ function TodaySchedule() {
                   )}
                 </div>
               </div>
+              <div className="flex">
+                <div className="font-bold text-xl leading-11 text-blue-500">已记录声音印象{selectedContact.soundNums}次</div>
+              </div>
+              <br />
+              <div className="flex">
+                <button
+                  className="w-60 h-69 rounded-full bg-blue-500 flex justify-center items-center"
+                  onClick={() => {
+                    setShowRecording(true)
+                    handleEditModalCancel()
+                  }}
+                >
+                  <Image
+                    width={30}
+                    height={30}
+                    src="/add.png"
+                    className="cursor-pointer bg-white w-[30px] h-[30px] rounded-full mr-3"
+                    alt={''}
+                  />
+                  <span className="font-bold text-white text-2xl leading-10">记录印象</span>
+                </button>
+              </div>
             </div>
             <div className="flex justify-center my-8">
               <Button onClick={handleSaveClick} className=" w-60 h-10 bg-blue rounded-full">
@@ -215,7 +242,7 @@ function TodaySchedule() {
       )}
 
       {/* 新增联系人弹窗 */}
-      <Modal title="新建日程" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk}>
+      <Modal title="新建形程" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk} footer={null}>
         <Input placeholder="请输入姓名" className="my-4" />
         <Input placeholder="请输入电话号码" className="my-4" />
         <Input placeholder="请输入公司名称" className="my-4" />
@@ -226,6 +253,28 @@ function TodaySchedule() {
           <Button onClick={handleSaveClick} className=" w-60 h-10 bg-blue rounded-full">
             保存
           </Button>
+        </div>
+      </Modal>
+
+      <Modal
+        style={{ backgroundColor: '#016bff' }}
+        title="录制中"
+        open={showRecording}
+        onCancel={handleModalCancel}
+        onOk={handleModalOk}
+        footer={null}
+      >
+        <div style={{ backgroundColor: '#016bff', backgroundImage: 'url(/recording.png)', backgroundSize: 'cover' }}>
+          <div className="p-6">
+            <h1 className="font-bold text-base leading-normal text-left align-top text-white mb-3"> 添加新声音印象中</h1>
+            <h2 className="font-mixed text-base leading-normal text-left align-top text-white"> 记录会谈印象， </h2>
+            <h2 className="font-mixed text-base leading-normal text-left align-top text-white"> 正在转化用户画像... ...</h2>
+          </div>
+          <div className="flex justify-center my-8">
+            <Button onClick={handleSaveClick} className="w-60 h-10 bg-white rounded-full text-blue">
+              保存
+            </Button>
+          </div>
         </div>
       </Modal>
     </div>
