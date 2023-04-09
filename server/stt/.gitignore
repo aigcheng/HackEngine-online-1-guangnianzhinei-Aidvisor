@@ -1,0 +1,9 @@
+*.db
+db.*
+.env
+.DS_Store
+.nuxt
+.output
+public/sounds
+node_modules
+
