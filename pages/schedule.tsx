@@ -11,28 +11,43 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 const { Content } = Layout
 const localizer = momentLocalizer(moment)
 
+const now = new Date()
+
 type Contact = {
   name: string
   email: string
 }
 
-type Event = {
-  title: string
-  start: Date
-  end: Date
-  participants: string[]
-}
-
 function SchedulePage() {
   const [contacts, setContacts] = useState<Contact[]>([])
-  const [events, setEvents] = useState<Event[]>([])
 
   interface Event {
+    id: number
     title: string
     start: Date
     end: Date
-    participants?: string[]
   }
+
+  const events: Event[] = [
+    {
+      id: 0,
+      title: '会面',
+      start: moment({ hours: 8 }).toDate(),
+      end: moment({ hours: 10 }).toDate()
+    },
+    {
+      id: 1,
+      title: '午饭',
+      start: moment({ hours: 12 }).toDate(),
+      end: moment({ hours: 13 }).toDate()
+    },
+    {
+      id: 2,
+      title: '访问',
+      start: moment({ hours: 14 }).toDate(),
+      end: moment({ hours: 17 }).toDate()
+    }
+  ]
 
   return (
     <Layout>
@@ -44,13 +59,21 @@ function SchedulePage() {
             <TodaySchedule />
           </Col>
           <Col span={16} style={{ color: '#000' }}>
-            <Calendar
-              localizer={localizer}
+            <Calendar<Event>
               events={events}
-              views={[Views.MONTH]}
-              startAccessor="start"
-              endAccessor="end"
-              style={{ height: 'calc(100vh - 120px)' }}
+              localizer={localizer}
+              components={{
+                eventWrapper: ({ event, children }) => (
+                  <div
+                    onContextMenu={e => {
+                      alert(`${event.title} is clicked.`)
+                      e.preventDefault()
+                    }}
+                  >
+                    {children}
+                  </div>
+                )
+              }}
             />
           </Col>
         </Row>

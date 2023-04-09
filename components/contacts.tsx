@@ -18,13 +18,13 @@ interface Contact {
 const contacts: Contact[] = [
   {
     id: 1,
-    name: '张三',
+    name: '光芒',
     phone: '13812345678',
-    company: 'ABC公司',
-    industry: 'IT',
-    position: '工程师',
+    company: '光年之内科技有限公司',
+    industry: '科技行业',
+    position: '供应商老板',
     birthday: '1990年1月1日',
-    soundImpression: '说话很温柔',
+    soundImpression: '很有魄力',
     avatar: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
   },
   {
@@ -48,6 +48,17 @@ const contacts: Contact[] = [
     birthday: '1998年5月5日',
     soundImpression: '声音很有特点',
     avatar: 'https://cdn.pixabay.com/photo/2016/04/01/11/25/avatar-1300331_960_720.png'
+  },
+  {
+    id: 4,
+    name: '张三',
+    phone: '13812345678',
+    company: 'ABC公司',
+    industry: 'IT',
+    position: '工程师',
+    birthday: '1990年1月1日',
+    soundImpression: '说话很温柔',
+    avatar: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
   }
 ]
 
@@ -121,12 +132,12 @@ function ContactsComponent() {
           <Image width={82} height={82} src="/contact.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
           <h2 className="font-bold text-black text-xl leading-6 mt-auto">联系人</h2>
         </div>
-        <div className="flex">
+        <div className="flex flex-wrap">
           {contacts.map((contact, index) => {
             return (
               <div
                 key={index}
-                className="contact flex flex-col items-center cursor-pointer pr-5"
+                className="contact flex flex-col items-center cursor-pointer pr-5 mb-3"
                 onClick={() => handleContactSelect(contact)}
               >
                 <Avatar src={contact.avatar} className="w-[50px] h-[50px]" />
