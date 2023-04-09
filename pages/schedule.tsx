@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Layout, Row, Col, Avatar, Button, List, Input, DatePicker, Select } from 'antd'
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment, { Moment } from 'moment'
+import 'moment/locale/zh-cn' // 导入中文语言包
 import Header from '@/components/header'
 import ContactsComponent from '@/components/contacts'
 import TodaySchedule from '@/components/TodaySchedule'
@@ -31,7 +32,7 @@ function SchedulePage() {
   const events: Event[] = [
     {
       id: 0,
-      title: '会面',
+      title: '应酬',
       start: moment({ hours: 8 }).toDate(),
       end: moment({ hours: 10 }).toDate()
     },
