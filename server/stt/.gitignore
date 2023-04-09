@@ -5,3 +5,5 @@ db.*
 .nuxt
 .output
 public/sounds
+node_modules
+
