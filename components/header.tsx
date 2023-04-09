@@ -27,45 +27,11 @@ export default function Header(props: any) {
       <div className="flex h-16 items-center space-x-4 mx-20">
         <div className="flex gap-6 md:gap-10">
           <Link href="/">
-            <svg viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.nav_eyes}>
-              <g
-                id="eyeLeft"
-                data-svg-origin="8 8"
-                transform="matrix(-0.80326,0.59562,-0.59562,-0.80326,19.19104,9.66112)"
-                style={{ transformOrigin: '0px 0px;' }}
-              >
-                <path
-                  d="M8 15.25C12.0041 15.25 15.25 12.0041 15.25 8C15.25 3.99594 12.0041 0.75 8 0.75C3.99594 0.75 0.75 3.99594 0.75 8C0.75 12.0041 3.99594 15.25 8 15.25Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                ></path>
-                <path
-                  d="M8 9C10.2091 9 12 7.20914 12 5C12 2.79086 10.2091 1 8 1C5.79086 1 4 2.79086 4 5C4 7.20914 5.79086 9 8 9Z"
-                  fill="currentColor"
-                ></path>
-              </g>
-              <g
-                id="eyeRight"
-                data-svg-origin="26 8"
-                transform="matrix(-0.80326,0.59562,-0.59562,-0.80326,51.64972,-1.06004)"
-                style={{ transformOrigin: '0px 0px;' }}
-              >
-                <path
-                  d="M26 15.25C30.0041 15.25 33.25 12.0041 33.25 8C33.25 3.99594 30.0041 0.75 26 0.75C21.9959 0.75 18.75 3.99594 18.75 8C18.75 12.0041 21.9959 15.25 26 15.25Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                ></path>
-                <path
-                  d="M26 9C28.2091 9 30 7.20914 30 5C30 2.79086 28.2091 1 26 1C23.7909 1 22 2.79086 22 5C22 7.20914 23.7909 9 26 9Z"
-                  fill="currentColor"
-                ></path>
-              </g>
-            </svg>
+            <h2 className="font-inter font-bold text-2xl leading-7 text-black flex items-center">
+              CHANPIN
+              <span className="text-blue-500">MING</span>
+            </h2>
           </Link>
-          <h2 className="font-inter font-bold text-2xl leading-7 text-black flex items-center">
-            CHANPIN
-            <span className="text-blue-500">MING</span>
-          </h2>
         </div>
         {props.showNav && (
           <div className="flex flex-1 items-center justify-end space-x-4">
@@ -81,17 +47,17 @@ export default function Header(props: any) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/recording" className="font-inter font-normal text-black text-2xl leading-6 flex items-center justify-center">
+                  <Link href="/schedule" className="font-inter font-normal text-black text-2xl leading-6 flex items-center justify-center">
                     日程
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/member-info"
+                    href="/recording"
                     target="_blank"
                     className="font-inter font-normal text-black text-2xl leading-6 flex items-center justify-center"
                   >
-                    聊天
+                    录音
                   </Link>
                 </li>
               </ul>
