@@ -23,9 +23,9 @@ type Event = {
 
 function SchedulePage() {
   const [contacts, setContacts] = useState<Contact[]>([])
-  const [events, setEvents] = useState<Event[]>([])
   const [newContact, setNewContact] = useState<string>('')
-  const [newEvent, setNewEvent] = useState<Partial<Event>>({})
+  const [events, setEvents] = useState<Event[]>([]);
+  const [newEvent, setNewEvent] = useState<Event>({ title: '', start: new Date(), end: new Date() });
 
   const handleAddContact = () => {
     if (newContact) {
@@ -34,6 +34,15 @@ function SchedulePage() {
     }
   }
 
+  interface Event {
+    title: string;
+    start: Date;
+    end: Date;
+    participants?: string[];
+  }
+  
+
+  
   const handleAddEvent = (value: Moment[]) => {
     if (newEvent.title && value.length === 2) {
       setEvents([
@@ -45,9 +54,10 @@ function SchedulePage() {
           participants: newEvent.participants || []
         }
       ])
-      setNewEvent({})
+      setNewEvent({ title: '', start: new Date(), end: new Date() });
     }
   }
+  
 
   return (
     <Layout>
@@ -81,13 +91,13 @@ function SchedulePage() {
                   <List.Item>
                     <List.Item.Meta
                       title={moment(event.start).format('YYYY-MM-DD HH:mm')}
-                      description={`参与人：${event.participants.join(', ')}`}
+                      description={`参与人：${event?.participants && event?.participants.join(', ')}`}
                     />
                     <div>{event.title}</div>
                   </List.Item>
                 )}
               />
-              <DatePicker.RangePicker showTime={{ format: 'HH:mm' }} onOk={handleAddEvent} style={{ marginBottom: '10px' }} />
+              {/* <DatePicker.RangePicker showTime={{ format: 'HH:mm' }} onOk={handleAddEvent} style={{ marginBottom: '10px' }} /> */}
               <Input
                 value={newEvent.title}
                 onChange={e => setNewEvent({ ...newEvent, title: e.target.value })}
