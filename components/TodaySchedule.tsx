@@ -7,6 +7,7 @@ interface Contact {
   id: number
   name: string
   phone: string
+  date: string
   company: string
   industry: string
   position: string
@@ -21,6 +22,7 @@ const contacts: Contact[] = [
     name: '张三',
     phone: '13812345678',
     company: 'ABC公司',
+    date: '2023年3月3日',
     industry: 'IT',
     position: '工程师',
     birthday: '1990年1月1日',
@@ -32,6 +34,7 @@ const contacts: Contact[] = [
     name: '李四',
     phone: '13987654321',
     company: 'XYZ公司',
+    date: '2023年3月5日',
     industry: '金融',
     position: '经理',
     birthday: '1985年5月5日',
@@ -43,6 +46,7 @@ const contacts: Contact[] = [
     name: '王五',
     phone: '13987654321',
     company: 'XYZ公司',
+    date: '2023年3月6日',
     industry: '互联网',
     position: '经理',
     birthday: '1998年5月5日',
@@ -125,8 +129,11 @@ function TodaySchedule() {
           {contacts.map((contact, index) => {
             return (
               <div key={index} className="contact flex  items-center cursor-pointer pr-5" onClick={() => handleContactSelect(contact)}>
-                <Avatar src={contact.avatar} className="w-[50px] h-[50px]" />
-                <div className="name text-black mr-3">{contact.name} </div>
+                <Avatar src={contact.avatar} className="w-[50px] h-[50px] mr-3 mb-3" />
+                <div className="flex flex-col">
+                  <div className="name text-black mr-3">{contact.date} </div>
+                  <div className="name text-black mr-3"> {contact.soundImpression}</div>
+                </div>
               </div>
             )
           })}
