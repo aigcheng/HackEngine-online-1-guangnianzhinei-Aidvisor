@@ -1,7 +1,7 @@
-import { Avatar, List, Layout, Input, Button } from 'antd'
+import { Avatar, List, Layout, Input, Button, Modal } from 'antd'
+import Image from 'next/image'
+import styles from '@/styles/Home.module.css'
 import { useState } from 'react'
-import Header from '@/components/header'
-const { Content } = Layout
 
 interface Contact {
   id: number
@@ -51,12 +51,15 @@ const contacts: Contact[] = [
   }
 ]
 
-function ContactsPage() {
-  const [selectedContact, setSelectedContact] = useState<Contact | null>(contacts[0])
+function Contacts() {
+  const [selectedContact, setSelectedContact] = useState<Contact | null>({})
+  const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
+  const [isNewContactModalVisible, setIsNewContactModalVisible] = useState(false)
 
   const handleContactSelect = (contact: Contact) => {
     setSelectedContact(contact)
+    setEditModalVisible(true)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +72,10 @@ function ContactsPage() {
   }
 
   const handleSaveClick = () => {
+    if (!editableField || !selectedContact) {
+      return
+    }
+
     // 将修改后的联系人信息保存到数据库或其他状态管理器中
     console.log('Saved:', selectedContact)
     setEditableField('')
@@ -86,32 +93,57 @@ function ContactsPage() {
     )
   }
 
+  const handleNewContactClick = () => {
+    setIsNewContactModalVisible(true)
+  }
+
+  const handleModalCancel = () => {
+    setIsNewContactModalVisible(false)
+  }
+
+  const handleEditModalCancel = () => {
+    setEditModalVisible(false)
+  }
+
+  const handleModalOk = () => {
+    // TODO: 将新建联系人保存到数据库或其他状态管理器中
+    setIsNewContactModalVisible(false)
+  }
+
+  const handleEditModalOk = () => {
+    setEditModalVisible(false)
+  }
+
   return (
-    <Layout>
-      <Header></Header>
-      <Content className="flex">
-        <div className="w-1/5 h-screen bg-blue-200 bg-opacity-15">
-          <List
-            itemLayout="horizontal"
-            dataSource={contacts}
-            renderItem={contact => (
-              <List.Item
-                key={contact.id}
-                onClick={() => handleContactSelect(contact)}
-                className={`p-4 cursor-pointer ${selectedContact?.id === contact.id ? 'bg-gray-200' : ''}`}
-              >
-                <List.Item.Meta
-                  className="mx-4"
-                  avatar={<Avatar src={contact.avatar} />}
-                  title={contact.name}
-                  description={contact.phone}
-                />
-              </List.Item>
-            )}
+    <div>
+      <div className={styles.contact}>
+        <div className="flex mb-5">
+          <Image width={82} height={82} src="/contact.png" className="cursor-pointer w-[82px] h-[82px]" alt={''} />
+          <h2 className="font-bold text-black text-xl leading-6 mt-auto">联系人</h2>
+        </div>
+        <div className="flex">
+          {contacts.map((contact, index) => {
+            return (
+              <div key={index} className="contact flex flex-col cursor-pointer pr-5" onClick={() => handleContactSelect(contact)}>
+                <Avatar src={contact.avatar} className="w-[50px] h-[50px]" />
+                <div className="name">{contact.name} </div>
+              </div>
+            )
+          })}
+          <Image
+            width={50}
+            height={50}
+            onClick={handleNewContactClick}
+            src="/add.png"
+            className="cursor-pointer w-[50px] h-[50px]"
+            alt={''}
           />
         </div>
-        {selectedContact && (
-          <div className="w-4/5 h-screen bg-gray-100 text-black flex flex-col">
+      </div>
+
+      {selectedContact && (
+        <Modal title="新增联系人" open={editModalVisible} onCancel={handleEditModalCancel} onOk={handleEditModalOk}>
+          <div className="bg-gray-100 text-black flex flex-col">
             <div className="flex flex-col items-center justify-around py-6">
               <Avatar src={selectedContact.avatar} size={96} />
               <h2 className="text-2xl font-bold">{selectedContact.name}</h2>
@@ -172,10 +204,20 @@ function ContactsPage() {
               </Button>
             </div>
           </div>
-        )}
-      </Content>
-    </Layout>
+        </Modal>
+      )}
+
+      {/* 新增联系人弹窗 */}
+      <Modal title="新增联系人" open={isNewContactModalVisible} onCancel={handleModalCancel} onOk={handleModalOk}>
+        <Input placeholder="请输入姓名" className="my-4" />
+        <Input placeholder="请输入电话号码" className="my-4" />
+        <Input placeholder="请输入公司名称" className="my-4" />
+        <Input placeholder="请输入行业" className="my-4" />
+        <Input placeholder="请输入职位" className="my-4" />
+        <Input placeholder="请输入生日" className="my-4" />
+      </Modal>
+    </div>
   )
 }
 
-export default ContactsPage
+export default Contacts

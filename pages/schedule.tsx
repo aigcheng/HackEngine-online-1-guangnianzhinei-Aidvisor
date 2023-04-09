@@ -3,6 +3,8 @@ import { Layout, Row, Col, Avatar, Button, List, Input, DatePicker, Select } fro
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment, { Moment } from 'moment'
 import Header from '@/components/header'
+import Contacts from '@/components/contacts'
+import styles from '@/styles/Home.module.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const { Content } = Layout
@@ -61,26 +63,9 @@ function SchedulePage() {
       <Header></Header>
       <Content style={{ padding: '50px' }}>
         <Row gutter={24}>
-          <Col span={5} style={{ backgroundColor: 'rgba(1, 107, 255, 0.15);', marginRight: '20px' }}>
-            <div style={{ height: '25%' }}>
-              <h2>联系人列表</h2>
-              <List
-                dataSource={contacts}
-                renderItem={contact => (
-                  <List.Item>
-                    <List.Item.Meta avatar={<Avatar size="large" />} title={contact.name} description={contact.email} />
-                  </List.Item>
-                )}
-              />
-              <Input.Search
-                value={newContact}
-                onChange={e => setNewContact(e.target.value)}
-                onSearch={handleAddContact}
-                placeholder="添加联系人"
-                enterButton={<Button type="primary">添加</Button>}
-              />
-            </div>
-            <div style={{ height: '75%' }}>
+          <Col span={6} className={styles.schedule_left}>
+            <Contacts />
+            <div>
               <h2>会面安排</h2>
               <List
                 dataSource={events}
@@ -94,7 +79,6 @@ function SchedulePage() {
                   </List.Item>
                 )}
               />
-              {/* <DatePicker.RangePicker showTime={{ format: 'HH:mm' }} onOk={handleAddEvent} style={{ marginBottom: '10px' }} /> */}
               <Input
                 value={newEvent.title}
                 onChange={e => setNewEvent({ ...newEvent, title: e.target.value })}
