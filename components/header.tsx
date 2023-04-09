@@ -7,7 +7,7 @@ export default function Header(props: any) {
   const [password, setPassword] = useState('')
 
   // 处理表单提交
-  const handleSubmit = event => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
     console.log(`手机号：${phone}，密码：${password}`)
   }
