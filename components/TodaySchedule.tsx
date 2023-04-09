@@ -52,7 +52,7 @@ const contacts: Contact[] = [
 ]
 
 function TodaySchedule() {
-  const [selectedContact, setSelectedContact] = useState<Contact | null>({})
+  const [selectedContact, setSelectedContact] = useState<Contact | null>()
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
   const [isNewContactModalVisible, setIsNewContactModalVisible] = useState(false)

@@ -52,7 +52,7 @@ const contacts: Contact[] = [
 ]
 
 function ContactsComponent() {
-  const [selectedContact, setSelectedContact] = useState<Contact | null>({})
+  const [selectedContact, setSelectedContact] = useState<Contact | null>()
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
   const [isNewContactModalVisible, setIsNewContactModalVisible] = useState(false)
