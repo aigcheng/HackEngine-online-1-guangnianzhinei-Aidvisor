@@ -64,6 +64,7 @@ function TodaySchedule() {
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [editableField, setEditableField] = useState('')
   const [showRecording, setShowRecording] = useState(false)
+  const [showScheduleModal, setShowScheduleModal] = useState(false)
   const [isNewContactModalVisible, setIsNewContactModalVisible] = useState(false)
 
   const handleContactSelect = (contact: Contact) => {
@@ -260,18 +261,55 @@ function TodaySchedule() {
         style={{ backgroundColor: '#016bff' }}
         title="录制中"
         open={showRecording}
-        onCancel={handleModalCancel}
-        onOk={handleModalOk}
+        onCancel={() => setShowRecording(false)}
+        onOk={() => setShowScheduleModal(true)}
         footer={null}
       >
-        <div style={{ backgroundColor: '#016bff', backgroundImage: 'url(/recording.png)', backgroundSize: 'cover' }}>
+        <div style={{ backgroundColor: '#016bff', backgroundSize: 'cover' }}>
           <div className="p-6">
             <h1 className="font-bold text-base leading-normal text-left align-top text-white mb-3"> 添加新声音印象中</h1>
             <h2 className="font-mixed text-base leading-normal text-left align-top text-white"> 记录会谈印象， </h2>
             <h2 className="font-mixed text-base leading-normal text-left align-top text-white"> 正在转化用户画像... ...</h2>
           </div>
           <div className="flex justify-center my-8">
-            <Button onClick={handleSaveClick} className="w-60 h-10 bg-white rounded-full text-blue">
+            <Button
+              onClick={() => {
+                setShowScheduleModal(true)
+                setShowRecording(false)
+              }}
+              className="w-60 h-10 bg-white rounded-full text-blue mb-5"
+            >
+              保存
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal open={showScheduleModal} onCancel={() => setShowScheduleModal(false)} onOk={() => setShowScheduleModal(false)} footer={null}>
+        <div className="bg-gray-100 text-black flex flex-col">
+          <div className="flex flex-col items-center justify-around py-6"></div>
+          <div className="grid grid-cols-2 gap-8 px-6">
+            <div className="flex">
+              <div className="font-bold mb-4">日程日期：2023年四月10号</div>
+            </div>
+            <div className="flex">
+              <div className="font-bold mb-4">日程主题：HackEngine-online</div>
+            </div>
+            <div className="flex">
+              <div className="font-bold mb-4">日程时间：上午十一点</div>
+            </div>
+            <div className="flex">
+              <div className="font-bold mb-4">会面人员：AI Engineer</div>
+            </div>
+            <br />
+          </div>
+          <div className="flex justify-center my-8">
+            <Button
+              onClick={() => {
+                setShowScheduleModal(false)
+              }}
+              className=" w-60 h-10 bg-blue rounded-full"
+            >
               保存
             </Button>
           </div>
